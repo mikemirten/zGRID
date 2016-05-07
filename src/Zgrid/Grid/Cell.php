@@ -38,7 +38,7 @@ class Cell
 	 * @var mixed
 	 */
 	private $content;
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -50,7 +50,7 @@ class Cell
 			$this->setContent($content);
 		}
 	}
-	
+
 	/**
 	 * Set content
 	 * 
@@ -60,7 +60,7 @@ class Cell
 	{
 		$this->content = $content;
 	}
-	
+
 	/**
 	 * Get content
 	 * 
@@ -70,7 +70,7 @@ class Cell
 	{
 		return $this->content;
 	}
-	
+
 	/**
 	 * Get value as a string
 	 */

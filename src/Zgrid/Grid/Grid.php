@@ -44,42 +44,42 @@ class Grid implements \IteratorAggregate
 	 * @var DataProviderInterface
 	 */
 	protected $source;
-	
+
 	/**
 	 * Request
 	 *
 	 * @var RequestInterface 
 	 */
 	protected $request;
-	
+
 	/**
 	 * Rows
 	 *
 	 * @var Row[]
 	 */
 	private $rows;
-	
+
 	/**
 	 * Schema
 	 *
 	 * @var Schema 
 	 */
 	private $schema;
-	
+
 	/**
 	 * Columns
 	 *
 	 * @var Column[]
 	 */
 	private $columns;
-	
+
 	/**
 	 * Title
 	 *
 	 * @var string
 	 */
 	private $title;
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -90,11 +90,11 @@ class Grid implements \IteratorAggregate
 		if ($request === null) {
 			$request = new SimpleRequest();
 		}
-		
+
 		$this->source  = $source;
 		$this->request = $request;
 	}
-	
+
 	/**
 	 * Set title
 	 * 
@@ -104,7 +104,7 @@ class Grid implements \IteratorAggregate
 	{
 		$this->title = $title;
 	}
-	
+
 	/**
 	 * Get title
 	 * 
@@ -114,7 +114,7 @@ class Grid implements \IteratorAggregate
 	{
 		return $this->title;
 	}
-	
+
 	/**
 	 * Is GRID globally searchable ?
 	 * 
@@ -124,7 +124,7 @@ class Grid implements \IteratorAggregate
 	{
 		return $this->getSchema()->hasGloballySearchable();
 	}
-	
+
 	/**
 	 * Get global search string if defined
 	 * 
@@ -134,7 +134,7 @@ class Grid implements \IteratorAggregate
 	{
 		return $this->request->getGlobalSearch();
 	}
-	
+
 	/**
 	 * Get rows
 	 * 
@@ -145,21 +145,21 @@ class Grid implements \IteratorAggregate
 		if ($this->rows === null) {
 			$requestValidator = new RequestValidator($this->getSchema());
 			$errors = $requestValidator->validate($this->request);
-			
+
 			if (! empty($errors)) {
 				throw new \LogicException(implode(', ', $errors));
 			}
-			
+
 			$this->rows = $this->source->getData($this->request);
-			
+
 			if (! $this->rows instanceof \Traversable) {
 				throw new \RuntimeException('Data provider must provide data as a Traversable instance');
 			}
 		}
-		
+
 		return $this->rows;
 	}
-	
+
 	/**
 	 * Get columns
 	 * 
@@ -169,15 +169,15 @@ class Grid implements \IteratorAggregate
 	{
 		if ($this->columns === null) {
 			$this->columns = new \SplDoublyLinkedList();
-			
+
 			foreach ($this->getSchema()->getFields() as $field) {
 				$this->columns[] = new Column($field, $this->request);
 			}
 		}
-		
+
 		return $this->columns;
 	}
-	
+
 	/**
 	 * Get schema
 	 * 
@@ -188,13 +188,13 @@ class Grid implements \IteratorAggregate
 		if ($this->schema === null) {
 			$this->schema = $this->source->getSchema();
 		}
-		
+
 		return $this->schema;
 	}
 
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getIterator()
 	{
 		return $this->getRows();

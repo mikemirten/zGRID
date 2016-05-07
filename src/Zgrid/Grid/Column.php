@@ -41,14 +41,14 @@ class Column
 	 * @var Field 
 	 */
 	protected $field;
-	
+
 	/**
 	 * Request
 	 *
 	 * @var RequestInterface 
 	 */
 	protected $request;
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -60,7 +60,7 @@ class Column
 		$this->field   = $field;
 		$this->request = $request;
 	}
-	
+
 	/**
 	 * Get name
 	 * 
@@ -70,7 +70,7 @@ class Column
 	{
 		return $this->field->getName();
 	}
-	
+
 	/**
 	 * Get title
 	 * 
@@ -80,7 +80,7 @@ class Column
 	{
 		return $this->field->getTitle();
 	}
-	
+
 	/**
 	 * Get width
 	 * 
@@ -90,7 +90,7 @@ class Column
 	{
 		return $this->field->getWidth();
 	}
-	
+
 	/**
 	 * Is orderable ?
 	 * 
@@ -100,7 +100,7 @@ class Column
 	{
 		return $this->field->isOrderable();
 	}
-	
+
 	/**
 	 * Is serchable ?
 	 * 
@@ -110,7 +110,7 @@ class Column
 	{
 		return $this->field->isSearchable();
 	}
-	
+
 	/**
 	 * Get order
 	 * 
@@ -120,7 +120,7 @@ class Column
 	{
 		return $this->request->getOrderFor($this->getName());
 	}
-	
+
 	/**
 	 * Get search
 	 * 
@@ -130,7 +130,7 @@ class Column
 	{
 		return $this->request->getSearchFor($this->getName());
 	}
-	
+
 	/**
 	 * Get value as a string
 	 */

@@ -46,7 +46,7 @@ class ArrayDataProvider implements DataProviderInterface
 	 * @var array
 	 */
 	private $source;
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -58,55 +58,55 @@ class ArrayDataProvider implements DataProviderInterface
 	}
 
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getData(RequestInterface $request)
 	{
 		$data = new \SplDoublyLinkedList();
-		
+
 		foreach ($this->source as $rowData) {
 			$row = new Row();
-			
+
 			foreach ($rowData as $cellData) {
 				$row->appendCell(new Cell($cellData));
 			}
-			
+
 			$data[] = $row;
 		}
-		
+
 		return $data;
 	}
 
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getSchema()
 	{
 		$colsNumber = 0;
-		
+
 		foreach ($this->source as $row) {
 			$count = count($row);
-			
+
 			if ($count > $colsNumber) {
 				$colsNumber = $count;
 			}
 		}
-		
+
 		$schema = new Schema();
-		
+
 		if ($colsNumber === 0) {
 			return $schema;
 		}
-		
+
 		$colSize = (int) round(100 / $colsNumber);
-		
+
 		for ($i = 0; $i < $colsNumber; ++ $i) {
 			$field = new Field($i);
 			$field->setWidth($colSize);
-			
+
 			$schema->addField($field);
 		}
-		
+
 		return $schema;
 	}
 

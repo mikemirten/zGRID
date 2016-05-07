@@ -38,42 +38,42 @@ class Field
 	 * @var string
 	 */
 	private $name;
-	
+
 	/**
 	 * Title
 	 *
 	 * @var string
 	 */
 	private $title;
-	
+
 	/**
 	 * width
 	 * 
 	 * @var int
 	 */
 	private $width;
-	
+
 	/**
 	 * Property name
 	 *
 	 * @var string
 	 */
 	private $property;
-	
+
 	/**
 	 * Orderable by the field
 	 *
 	 * @var bool 
 	 */
 	private $orderable = false;
-	
+
 	/**
 	 * Searchable by the field
 	 *
 	 * @var bool
 	 */
 	private $searchable = false;
-	
+
 	/**
 	 * Involved in global search
 	 *
@@ -90,7 +90,7 @@ class Field
 	{
 		$this->name = $name;
 	}
-	
+
 	/**
 	 * Get name
 	 * 
@@ -100,7 +100,7 @@ class Field
 	{
 		return $this->name;
 	}
-	
+
 	/**
 	 * Set title
 	 * 
@@ -110,7 +110,7 @@ class Field
 	{
 		return $this->title = $title;
 	}
-	
+
 	/**
 	 * Get title
 	 * 
@@ -121,10 +121,10 @@ class Field
 		if ($this->title === null) {
 			return ucfirst($this->name);
 		}
-		
+
 		return $this->title;
 	}
-	
+
 	/**
 	 * Set width
 	 * 
@@ -134,7 +134,7 @@ class Field
 	{
 		$this->width = $width;
 	}
-	
+
 	/**
 	 * Get width
 	 * 
@@ -144,7 +144,7 @@ class Field
 	{
 		return $this->width;
 	}
-	
+
 	/**
 	 * Set property name
 	 * 
@@ -154,7 +154,7 @@ class Field
 	{
 		$this->property = $property;
 	}
-	
+
 	/**
 	 * Get property
 	 * 
@@ -164,7 +164,7 @@ class Field
 	{
 		return $this->property;
 	}
-	
+
 	/**
 	 * Set orderable
 	 * 
@@ -174,7 +174,7 @@ class Field
 	{
 		$this->orderable = $orderable;
 	}
-	
+
 	/**
 	 * Is orderable ?
 	 * 
@@ -184,7 +184,7 @@ class Field
 	{
 		return $this->orderable;
 	}
-	
+
 	/**
 	 * Set searchable
 	 * 
@@ -194,7 +194,7 @@ class Field
 	{
 		$this->searchable = $searchable;
 	}
-	
+
 	/**
 	 * Is serchable ?
 	 * 
@@ -204,7 +204,7 @@ class Field
 	{
 		return $this->searchable;
 	}
-	
+
 	/**
 	 * Set globally searchable
 	 * 
@@ -214,7 +214,7 @@ class Field
 	{
 		$this->globalSearchable = $searchable;
 	}
-	
+
 	/**
 	 * Is globally serchable ?
 	 * 

@@ -41,7 +41,7 @@ class RequestValidator
 	 * @var Schema
 	 */
 	public $schema;
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -51,7 +51,7 @@ class RequestValidator
 	{
 		$this->schema = $schema;
 	}
-	
+
 	/**
 	 * Validate request
 	 * 
@@ -60,13 +60,13 @@ class RequestValidator
 	public function validate(RequestInterface $request)
 	{
 		$errors = [];
-		
+
 		$this->validateOrder($request, $errors);
 		$this->validateSearch($request, $errors);
-		
+
 		return $errors;
 	}
-	
+
 	/**
 	 * Validate order
 	 * 
@@ -80,17 +80,17 @@ class RequestValidator
 				$errors[] = sprintf('Order cannot be applied to non-existent field "%s"', $field);
 				continue;
 			}
-			
+
 			if (! $this->schema->getField($field)->isOrderable()) {
 				$errors[] = sprintf('Field "%s" is not orderable', $field);
 			}
-			
+
 			if ($value !== RequestInterface::ORDER_ASC && $value !== RequestInterface::ORDER_DESC) {
 				$errors[] = sprintf('Invalid order direction "%s" specified for the field "%s"', $value, $field);
 			}
 		}
 	}
-	
+
 	/**
 	 * Validate search
 	 * 
@@ -104,11 +104,11 @@ class RequestValidator
 				$errors[] = sprintf('Search cannot be applied to non-existent field "%s"', $field);
 				continue;
 			}
-			
+
 			if (! $this->schema->getField($field)->isSearchable()) {
 				$errors[] = sprintf('Field "%s" is not searchable', $field);
 			}
-			
+
 			if (empty($value)) {
 				$errors[] = sprintf('Search string of field "%s" is empty', $value, $field);
 			}

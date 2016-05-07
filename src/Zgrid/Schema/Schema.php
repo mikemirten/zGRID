@@ -38,7 +38,7 @@ class Schema implements \IteratorAggregate
 	 * @var Field[]
 	 */
 	private $fields = [];
-	
+
 	/**
 	 * Add field
 	 * 
@@ -48,14 +48,14 @@ class Schema implements \IteratorAggregate
 	public function addField(Field $field)
 	{
 		$name = $field->getName();
-		
+
 		if (isset($this->fields[$name])) {
 			throw new \LogicException(sprintf('Field "%s" already exists', $name));
 		}
-		
+
 		$this->fields[$name] = $field;
 	}
-	
+
 	/**
 	 * Has field
 	 * 
@@ -65,7 +65,7 @@ class Schema implements \IteratorAggregate
 	{
 		return isset($this->fields[$name]);
 	}
-	
+
 	/**
 	 * Get field
 	 * 
@@ -77,10 +77,10 @@ class Schema implements \IteratorAggregate
 		if (! isset($this->fields[$name])) {
 			throw new \LogicException(sprintf('Field "%s" does not exists', $name));
 		}
-		
+
 		return $this->fields[$name];
 	}
-	
+
 	/**
 	 * Get fields
 	 * 
@@ -89,7 +89,7 @@ class Schema implements \IteratorAggregate
 	public function getFields() {
 		return $this->fields;
 	}
-	
+
 	/**
 	 * Has at least one orderable field
 	 * 
@@ -102,10 +102,10 @@ class Schema implements \IteratorAggregate
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Has at least one searchable field
 	 * 
@@ -118,10 +118,10 @@ class Schema implements \IteratorAggregate
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Has at least one field involved in global search ?
 	 * 
@@ -134,10 +134,10 @@ class Schema implements \IteratorAggregate
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Get globally searchable fild names
 	 * 
@@ -146,16 +146,16 @@ class Schema implements \IteratorAggregate
 	public function getGloballySearchableNames()
 	{
 		$names = [];
-		
+
 		foreach ($this->fields as $field) {
 			if ($field->isGloballySearchable()) {
 				$names[] = $field->getName();
 			}
 		}
-		
+
 		return $names;
 	}
-	
+
 	/**
 	 * Is the schema empty ?
 	 * 
@@ -167,8 +167,8 @@ class Schema implements \IteratorAggregate
 	}
 
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getIterator()
 	{
 		return new \ArrayIterator($this->getFields());

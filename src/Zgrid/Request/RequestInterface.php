@@ -31,24 +31,24 @@ interface RequestInterface
 {
 	const DEFAULT_LIMIT  = 1000;
 	const DEFAULT_OFFSET = 0;
-	
+
 	const ORDER_ASC  = 'asc';
 	const ORDER_DESC = 'desc';
-	
+
 	/**
 	 * Get limit
 	 * 
 	 * @return int
 	 */
 	public function getLimit();
-	
+
 	/**
 	 * Get offset
 	 * 
 	 * @return int
 	 */
 	public function getOffset();
-	
+
 	/**
 	 * Get order
 	 * 
@@ -60,7 +60,7 @@ interface RequestInterface
 	 * @return array
 	 */
 	public function getOrder();
-	
+
 	/**
 	 * Get order direction for property
 	 * 
@@ -68,7 +68,7 @@ interface RequestInterface
 	 * @return string | null
 	 */
 	public function getOrderFor($name);
-	
+
 	/**
 	 * Get search
 	 * 
@@ -80,7 +80,7 @@ interface RequestInterface
 	 * @return array
 	 */
 	public function getSearch();
-	
+
 	/**
 	 * Get search string for property
 	 * 
@@ -88,7 +88,7 @@ interface RequestInterface
 	 * @return string | null
 	 */
 	public function getSearchFor($name);
-	
+
 	/**
 	 * Get global search
 	 * 

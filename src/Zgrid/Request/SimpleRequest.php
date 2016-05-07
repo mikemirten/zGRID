@@ -38,35 +38,35 @@ class SimpleRequest implements RequestInterface
 	 * @var int
 	 */
 	private $limit = self::DEFAULT_LIMIT;
-	
+
 	/**
 	 * Offset
 	 *
 	 * @var int
 	 */
 	private $offset = self::DEFAULT_OFFSET;
-	
+
 	/**
 	 * Orders' set
 	 *
 	 * @var array
 	 */
 	private $order = [];
-	
+
 	/**
 	 * Searches' set
 	 *
 	 * @var array
 	 */
 	private $search = [];
-	
+
 	/**
 	 * Global search
 	 *
 	 * @var string
 	 */
 	private $globalSearch;
-	
+
 	/**
 	 * Set limit
 	 * 
@@ -76,10 +76,10 @@ class SimpleRequest implements RequestInterface
 	public function setLimit($limit)
 	{
 		$this->limit = (int) $limit;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Set offset
 	 * 
@@ -89,10 +89,10 @@ class SimpleRequest implements RequestInterface
 	public function setOffset($offset)
 	{
 		$this->offset = $offset;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Set order by property
 	 * 
@@ -103,10 +103,10 @@ class SimpleRequest implements RequestInterface
 	public function setOrderBy($property, $direction = self::ORDER_ASC)
 	{
 		$this->order[trim($property)] = strtolower(trim($direction));
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Set search by property
 	 * 
@@ -117,45 +117,45 @@ class SimpleRequest implements RequestInterface
 	public function setSearchBy($property, $string)
 	{
 		$this->search[trim($property)] = (string) $string;
-		
+
 		return $this;
 	}
-	
+
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getGlobalSearch()
 	{
 		return $this->globalSearch;
 	}
 
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getLimit()
 	{
 		return $this->getLimit();
 	}
 
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getOffset()
 	{
 		return $this->offset;
 	}
 
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getOrder()
 	{
 		return $this->order;
 	}
 
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getOrderFor($name)
 	{
 		if (isset($this->order[$name])) {
@@ -164,16 +164,16 @@ class SimpleRequest implements RequestInterface
 	}
 
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getSearch()
 	{
 		return $this->search;
 	}
 
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getSearchFor($name)
 	{
 		if (isset($this->search[$name])) {

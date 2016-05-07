@@ -38,7 +38,7 @@ class Row implements \IteratorAggregate
 	 * @var \SplDoublyLinkedList 
 	 */
 	private $cells;
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -50,16 +50,16 @@ class Row implements \IteratorAggregate
 			$this->cells = $cells;
 			return;
 		}
-		
+
 		$this->cells = new \SplDoublyLinkedList();
-		
+
 		if ($cells !== null) {
 			foreach ($cells as $cell) {
 				$this->appendCell($cell);
 			}
 		}
 	}
-	
+
 	/**
 	 * Append cell
 	 * 
@@ -69,7 +69,7 @@ class Row implements \IteratorAggregate
 	{
 		$this->cells->push($cell);
 	}
-	
+
 	/**
 	 * Prepend cell
 	 * 
@@ -79,10 +79,10 @@ class Row implements \IteratorAggregate
 	{
 		$this->cells->unshift($cell);
 	}
-	
+
 	/**
-     * {@inheritdoc}
-     */
+	 * {@inheritdoc}
+	 */
 	public function getIterator()
 	{
 		return $this->cells;
