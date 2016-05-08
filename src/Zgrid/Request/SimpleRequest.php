@@ -134,7 +134,7 @@ class SimpleRequest implements RequestInterface
 	 */
 	public function getLimit()
 	{
-		return $this->getLimit();
+		return $this->limit;
 	}
 
 	/**
