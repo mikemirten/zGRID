@@ -63,8 +63,14 @@ class ArrayDataProvider implements DataProviderInterface
 	public function getData(RequestInterface $request)
 	{
 		$data = new \SplDoublyLinkedList();
-
-		foreach ($this->source as $rowData) {
+		
+		$source = array_slice(
+			$this->source,
+			$request->getLimit() * ($request->getPage() - 1),
+			$request->getLimit()
+		);
+		
+		foreach ($source as $rowData) {
 			$row = new Row();
 
 			foreach ($rowData as $cellData) {
@@ -75,6 +81,14 @@ class ArrayDataProvider implements DataProviderInterface
 		}
 
 		return $data;
+	}
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getTotal()
+	{
+		return count($this->source);
 	}
 
 	/**
