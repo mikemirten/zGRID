@@ -40,11 +40,11 @@ class SimpleRequest implements RequestInterface
 	private $limit = self::DEFAULT_LIMIT;
 
 	/**
-	 * Offset
+	 * Page number
 	 *
 	 * @var int
 	 */
-	private $offset = self::DEFAULT_OFFSET;
+	private $page = self::DEFAULT_PAGE;
 
 	/**
 	 * Orders' set
@@ -81,14 +81,14 @@ class SimpleRequest implements RequestInterface
 	}
 
 	/**
-	 * Set offset
+	 * Set page number
 	 * 
-	 * @param  int $offset
+	 * @param  int $page
 	 * @return SimpleRequest
 	 */
-	public function setOffset($offset)
+	public function setPage($page)
 	{
-		$this->offset = $offset;
+		$this->page = (int) $page;
 
 		return $this;
 	}
@@ -140,9 +140,9 @@ class SimpleRequest implements RequestInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getOffset()
+	public function getPage()
 	{
-		return $this->offset;
+		return $this->page;
 	}
 
 	/**

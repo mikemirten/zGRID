@@ -25,26 +25,61 @@
  * @version   1.0
  */
 
-namespace Zgrid\DataProvider;
-
-use Zgrid\SchemaProvider\SchemaProviderInterface;
-use Zgrid\Request\RequestInterface;
+namespace Zgrid\Pagination;
 
 /**
- * Data provider interface
+ * Pagination interface
  */
-interface DataProviderInterface extends SchemaProviderInterface
-{	
+interface PaginationInterface
+{		
 	/**
-	 * Get rows with data
+	 * Get number of previous page
+	 * if current not first
 	 * 
-	 * @param  RequestInterface $request
-	 * @return \Zgrid\Grid\Row[] Traversable
+	 * @return int | null
 	 */
-	public function getData(RequestInterface $request);
+	public function getPrevious();
 	
 	/**
-	 * Get total number of records found by request
+	 * Get number of next page
+	 * if current not last
+	 * 
+	 * @return int | null
+	 */
+	public function getNext();
+	
+	/**
+	 * Get number of first page
+	 * if current not first
+	 * 
+	 * @return int | null
+	 */
+	public function getFirst();
+	
+	/**
+	 * Get number of last page
+	 * if current not last
+	 * 
+	 * @return int | null
+	 */
+	public function getLast();
+	
+	/**
+	 * Get range of pages
+	 * 
+	 * @return \Traversable
+	 */
+	public function getRange();
+	
+	/**
+	 * Get number of current page
+	 * 
+	 * @return int
+	 */
+	public function getCurrent();
+	
+	/**
+	 * Get total pages number
 	 * 
 	 * @return int
 	 */

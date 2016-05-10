@@ -32,6 +32,7 @@ use Zgrid\Request\RequestInterface;
 use Zgrid\Request\SimpleRequest;
 use Zgrid\Validator\RequestValidator;
 use Zgrid\Schema\Schema;
+use Zgrid\Pagination\SlidingPagination;
 
 /**
  * GRID core
@@ -58,6 +59,13 @@ class Grid implements \IteratorAggregate
 	 * @var Row[]
 	 */
 	private $rows;
+	
+	/**
+	 * Total rows number
+	 *
+	 * @var int
+	 */
+	private $totalRows;
 
 	/**
 	 * Schema
@@ -79,6 +87,13 @@ class Grid implements \IteratorAggregate
 	 * @var string
 	 */
 	private $title;
+	
+	/**
+	 * Pagination
+	 *
+	 * @var \Zgrid\Pagination\PaginationInterface 
+	 */
+	private $pagination;
 
 	/**
 	 * Constructor
@@ -177,6 +192,20 @@ class Grid implements \IteratorAggregate
 
 		return $this->columns;
 	}
+	
+	/**
+	 * Get total number of records found by request
+	 * 
+	 * @return int
+	 */
+	public function getTotal()
+	{
+		if ($this->totalRows === null) {
+			$this->totalRows = $this->source->getTotal();
+		}
+		
+		return $this->totalRows;
+	}
 
 	/**
 	 * Get schema
@@ -190,6 +219,20 @@ class Grid implements \IteratorAggregate
 		}
 
 		return $this->schema;
+	}
+	
+	/**
+	 * Get pagination
+	 * 
+	 * @return \Zgrid\Pagination\PaginationInterface
+	 */
+	public function getPagination()
+	{
+		if ($this->pagination === null) {
+			$this->pagination = new SlidingPagination($this->source, $this->request);
+		}
+		
+		return $this->pagination;
 	}
 
 	/**

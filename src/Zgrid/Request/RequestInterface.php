@@ -29,25 +29,25 @@ namespace Zgrid\Request;
 
 interface RequestInterface
 {
-	const DEFAULT_LIMIT  = 1000;
-	const DEFAULT_OFFSET = 0;
+	const DEFAULT_LIMIT = 1000;
+	const DEFAULT_PAGE  = 1;
 
 	const ORDER_ASC  = 'asc';
 	const ORDER_DESC = 'desc';
 
 	/**
-	 * Get limit
+	 * Get limit per page
 	 * 
 	 * @return int
 	 */
 	public function getLimit();
 
 	/**
-	 * Get offset
+	 * Get page number
 	 * 
 	 * @return int
 	 */
-	public function getOffset();
+	public function getPage();
 
 	/**
 	 * Get order
