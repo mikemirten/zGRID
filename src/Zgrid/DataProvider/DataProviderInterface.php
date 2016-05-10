@@ -46,7 +46,8 @@ interface DataProviderInterface extends SchemaProviderInterface
 	/**
 	 * Get total number of records found by request
 	 * 
+	 * @param  RequestInterface $request
 	 * @return int
 	 */
-	public function getTotal();
+	public function getTotal(RequestInterface $request);
 }

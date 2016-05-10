@@ -201,7 +201,7 @@ class Grid implements \IteratorAggregate
 	public function getTotal()
 	{
 		if ($this->totalRows === null) {
-			$this->totalRows = $this->source->getTotal();
+			$this->totalRows = $this->source->getTotal($this->request);
 		}
 		
 		return $this->totalRows;

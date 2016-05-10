@@ -86,7 +86,7 @@ class ArrayDataProvider implements DataProviderInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getTotal()
+	public function getTotal(RequestInterface $request)
 	{
 		return count($this->source);
 	}

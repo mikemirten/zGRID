@@ -88,7 +88,7 @@ class SlidingPagination implements PaginationInterface, \IteratorAggregate
 	public function getTotal()
 	{
 		if ($this->total === null) {
-			$totalRows = $this->dataProvider->getTotal();
+			$totalRows = $this->dataProvider->getTotal($this->request);
 			
 			if ($totalRows === 0) {
 				return 0;
