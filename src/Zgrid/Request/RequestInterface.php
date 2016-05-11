@@ -29,7 +29,7 @@ namespace Zgrid\Request;
 
 interface RequestInterface
 {
-	const DEFAULT_LIMIT = 1000;
+	const DEFAULT_LIMIT = 25;
 	const DEFAULT_PAGE  = 1;
 
 	const ORDER_ASC  = 'asc';
