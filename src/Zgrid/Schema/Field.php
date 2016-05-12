@@ -66,6 +66,13 @@ class Field
 	 * @var bool 
 	 */
 	private $orderable = false;
+	
+	/**
+	 * Order by properties
+	 *
+	 * @var array
+	 */
+	private $orderBy = [];
 
 	/**
 	 * Searchable by the field
@@ -73,6 +80,13 @@ class Field
 	 * @var bool
 	 */
 	private $searchable = false;
+	
+	/**
+	 * Search by properties
+	 *
+	 * @var array
+	 */
+	private $searchBy = [];
 
 	/**
 	 * Involved in global search
@@ -184,7 +198,27 @@ class Field
 	{
 		return $this->orderable;
 	}
+	
+	/**
+	 * Set order by
+	 * 
+	 * @param array $orderBy
+	 */
+	public function setOrderBy(array $orderBy)
+	{
+		$this->orderBy = $orderBy;
+	}
 
+	/**
+	 * Get order by
+	 * 
+	 * @return array
+	 */
+	public function getOrderBy()
+	{
+		return $this->orderBy;
+	}
+	
 	/**
 	 * Set searchable
 	 * 
@@ -203,6 +237,26 @@ class Field
 	public function isSearchable()
 	{
 		return $this->searchable;
+	}
+	
+	/**
+	 * Set "search by" properties
+	 * 
+	 * @param array $searchBy
+	 */
+	public function setSearchBy(array $searchBy)
+	{
+		$this->searchBy = $searchBy;
+	}
+	
+	/**
+	 * Get "search by" properties
+	 * 
+	 * @return array
+	 */
+	public function getSearchBy()
+	{
+		return $this->searchBy;
 	}
 
 	/**
