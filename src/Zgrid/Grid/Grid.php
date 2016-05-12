@@ -30,9 +30,11 @@ namespace Zgrid\Grid;
 use Zgrid\DataProvider\DataProviderInterface;
 use Zgrid\Request\RequestInterface;
 use Zgrid\Request\SimpleRequest;
+use Zgrid\Request\ResolvedRequest;
 use Zgrid\Validator\RequestValidator;
 use Zgrid\Schema\Schema;
 use Zgrid\Pagination\SlidingPagination;
+use Zgrid\Exception\InvalidRequest;
 
 /**
  * GRID core
@@ -52,6 +54,14 @@ class Grid implements \IteratorAggregate
 	 * @var RequestInterface 
 	 */
 	protected $request;
+	
+	/**
+	 * Resolved request
+	 * Contains data resolved by original request and schema
+	 *
+	 * @var RequestInterface 
+	 */
+	protected $resolvedRequest;
 
 	/**
 	 * Rows
@@ -158,14 +168,7 @@ class Grid implements \IteratorAggregate
 	public function getRows()
 	{
 		if ($this->rows === null) {
-			$requestValidator = new RequestValidator($this->getSchema());
-			$errors = $requestValidator->validate($this->request);
-
-			if (! empty($errors)) {
-				throw new \LogicException(implode(', ', $errors));
-			}
-
-			$this->rows = $this->source->getData($this->request);
+			$this->rows = $this->source->getData($this->getResolvedRequest());
 
 			if (! $this->rows instanceof \Traversable) {
 				throw new \RuntimeException('Data provider must provide data as a Traversable instance');
@@ -173,6 +176,30 @@ class Grid implements \IteratorAggregate
 		}
 
 		return $this->rows;
+	}
+	
+	/**
+	 * Get resolved request
+	 * Contains data resolved by original request and schema
+	 * 
+	 * @return RequestInterface
+	 */
+	protected function getResolvedRequest()
+	{
+		if ($this->resolvedRequest === null) {
+			$schema = $this->getSchema();
+			
+			$requestValidator = new RequestValidator($schema);
+			$errors = $requestValidator->validate($this->request);
+			
+			if (! empty($errors)) {
+				throw new InvalidRequest(implode(', ', $errors));
+			}
+			
+			$this->resolvedRequest = new ResolvedRequest($this->request, $schema);
+		}
+		
+		return $this->resolvedRequest;
 	}
 
 	/**
@@ -201,7 +228,7 @@ class Grid implements \IteratorAggregate
 	public function getTotal()
 	{
 		if ($this->totalRows === null) {
-			$this->totalRows = $this->source->getTotal($this->request);
+			$this->totalRows = $this->source->getTotal($this->getResolvedRequest());
 		}
 		
 		return $this->totalRows;
@@ -229,7 +256,10 @@ class Grid implements \IteratorAggregate
 	public function getPagination()
 	{
 		if ($this->pagination === null) {
-			$this->pagination = new SlidingPagination($this->source, $this->request);
+			$this->pagination = new SlidingPagination(
+				$this->source,
+				$this->getResolvedRequest()
+			);
 		}
 		
 		return $this->pagination;
