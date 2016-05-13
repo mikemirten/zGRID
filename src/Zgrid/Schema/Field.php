@@ -101,6 +101,13 @@ class Field
 	 * @var bool
 	 */
 	private $globalSearchable = false;
+	
+	/**
+	 * Priority
+	 * 
+	 * @var int
+	 */
+	private $priority = 0;
 
 	/**
 	 * Constructor
@@ -304,5 +311,25 @@ class Field
 	public function isGloballySearchable()
 	{
 		return $this->globalSearchable;
+	}
+	
+	/**
+	 * Set priority
+	 * 
+	 * @param int $priority
+	 */
+	public function setPriority($priority)
+	{
+		$this->priority = (int) $priority;
+	}
+	
+	/**
+	 * Get priority
+	 * 
+	 * @return int
+	 */
+	public function getPriority()
+	{
+		return $this->priority;
 	}
 }

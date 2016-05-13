@@ -38,6 +38,13 @@ class Schema implements \IteratorAggregate
 	 * @var Field[]
 	 */
 	private $fields = [];
+	
+	/**
+	 * Fields sorder by priority
+	 *
+	 * @var Field[] 
+	 */
+	private $sortedFields;
 
 	/**
 	 * Add field
@@ -54,6 +61,7 @@ class Schema implements \IteratorAggregate
 		}
 
 		$this->fields[$name] = $field;
+		$this->sortedFields  = null;
 	}
 
 	/**
@@ -87,7 +95,17 @@ class Schema implements \IteratorAggregate
 	 * @return Field[]
 	 */
 	public function getFields() {
-		return $this->fields;
+		if ($this->sortedFields === null) {
+			$queue = new \SplPriorityQueue();
+			
+			foreach (array_reverse($this->fields) as $field) {
+				$queue->insert($field, $field->getPriority());
+			}
+			
+			$this->sortedFields = iterator_to_array($queue);
+		}
+		
+		return $this->sortedFields;
 	}
 
 	/**
