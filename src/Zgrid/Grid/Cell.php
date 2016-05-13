@@ -27,6 +27,8 @@
 
 namespace Zgrid\Grid;
 
+use Zgrid\Schema\Field;
+
 /**
  * Cell of table's row
  */
@@ -38,27 +40,23 @@ class Cell
 	 * @var mixed
 	 */
 	private $content;
+	
+	/**
+	 * Field
+	 *
+	 * @var Field
+	 */
+	private $field;
 
 	/**
 	 * Constructor
 	 * 
 	 * @param mixed $content
 	 */
-	public function __construct($content = null)
-	{
-		if ($content !== null) {
-			$this->setContent($content);
-		}
-	}
-
-	/**
-	 * Set content
-	 * 
-	 * @param mixed $content
-	 */
-	public function setContent($content)
+	public function __construct($content, Field $field)
 	{
 		$this->content = $content;
+		$this->field   = $field;
 	}
 
 	/**
@@ -69,6 +67,16 @@ class Cell
 	public function getContent()
 	{
 		return $this->content;
+	}
+	
+	/**
+	 * Get type
+	 * 
+	 * @return string
+	 */
+	public function getType()
+	{
+		return $this->field->getType();
 	}
 
 	/**

@@ -45,6 +45,13 @@ class Field
 	 * @var string
 	 */
 	private $title;
+	
+	/**
+	 * Type of field
+	 *
+	 * @var string
+	 */
+	private $type;
 
 	/**
 	 * width
@@ -137,6 +144,26 @@ class Field
 		}
 
 		return $this->title;
+	}
+	
+	/**
+	 * Set type
+	 * 
+	 * @param string $type
+	 */
+	public function setType($type)
+	{
+		$this->type = $type;
+	}
+	
+	/**
+	 * Get type
+	 * 
+	 * @return string
+	 */
+	public function getType()
+	{
+		return $this->type;
 	}
 
 	/**

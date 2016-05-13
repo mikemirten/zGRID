@@ -70,6 +70,16 @@ class Column
 	{
 		return $this->field->getName();
 	}
+	
+	/**
+	 * Get type
+	 * 
+	 * @return string
+	 */
+	public function getType()
+	{
+		return $this->field->getType();
+	}
 
 	/**
 	 * Get title
