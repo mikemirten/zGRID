@@ -51,7 +51,7 @@ class Schema implements \IteratorAggregate
 	 *
 	 * @var array
 	 */
-	private $metadataProperties;
+	private $metadataProperties = [];
 
 	/**
 	 * Add field
