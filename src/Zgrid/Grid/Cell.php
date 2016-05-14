@@ -47,6 +47,13 @@ class Cell
 	 * @var Field
 	 */
 	private $field;
+	
+	/**
+	 * Parent row
+	 *
+	 * @var Row
+	 */
+	private $row;
 
 	/**
 	 * Constructor
@@ -57,6 +64,21 @@ class Cell
 	{
 		$this->content = $content;
 		$this->field   = $field;
+	}
+	
+	/**
+	 * Set parent row
+	 * 
+	 * @param  Row $row
+	 * @throws \LogicException
+	 */
+	public function setRow(Row $row)
+	{
+		if ($this->row !== null) {
+			throw new \LogicException('Cell already belongs to a row');
+		}
+		
+		$this->row = $row;
 	}
 
 	/**
@@ -77,6 +99,38 @@ class Cell
 	public function getType()
 	{
 		return $this->field->getType();
+	}
+	
+	/**
+	 * Has link
+	 * 
+	 * @return bool
+	 */
+	public function hasLink()
+	{
+		return $this->field->getCellLink() !== null;
+	}
+	
+	/**
+	 * Get url if the cell is a link
+	 * 
+	 * @return string
+	 */
+	public function getLink()
+	{
+		$link = $this->field->getCellLink();
+		
+		if ($link === null) {
+			return;
+		}
+		
+		return preg_replace_callback('~\{([^}]+)\}~', function($matches) {
+			if ($this->row === null) {
+				throw new \LogicException('Cell doesn\'t belongs to a row');
+			}
+			
+			return $this->row->getMetadataProperty($matches[1]);
+		}, $link);
 	}
 
 	/**

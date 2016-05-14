@@ -45,6 +45,13 @@ class Schema implements \IteratorAggregate
 	 * @var Field[] 
 	 */
 	private $sortedFields;
+	
+	/**
+	 * Metadata properties list
+	 *
+	 * @var array
+	 */
+	private $metadataProperties;
 
 	/**
 	 * Add field
@@ -172,6 +179,26 @@ class Schema implements \IteratorAggregate
 		}
 
 		return $names;
+	}
+	
+	/**
+	 * Add metadata property
+	 * 
+	 * @param string $name
+	 */
+	public function addMetadataProperty($name)
+	{
+		$this->metadataProperties[] = $name;
+	}
+	
+	/**
+	 * Get metadata properties
+	 * 
+	 * @return array
+	 */
+	public function getMetadataProperties()
+	{
+		return $this->metadataProperties;
 	}
 
 	/**

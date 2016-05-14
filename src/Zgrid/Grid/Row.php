@@ -38,6 +38,13 @@ class Row implements \IteratorAggregate
 	 * @var \SplDoublyLinkedList 
 	 */
 	private $cells;
+	
+	/**
+	 * Metadata
+	 *
+	 * @var array
+	 */
+	private $metadata = [];
 
 	/**
 	 * Constructor
@@ -48,6 +55,11 @@ class Row implements \IteratorAggregate
 	{
 		if ($cells instanceof \SplDoublyLinkedList) {
 			$this->cells = $cells;
+			
+			foreach ($cells as $cell) {
+				$cell->setRow($this);
+			}
+			
 			return;
 		}
 
@@ -67,6 +79,8 @@ class Row implements \IteratorAggregate
 	 */
 	public function appendCell(Cell $cell)
 	{
+		$cell->setRow($this);
+		
 		$this->cells->push($cell);
 	}
 
@@ -77,7 +91,35 @@ class Row implements \IteratorAggregate
 	 */
 	public function prependCell(Cell $cell)
 	{
+		$cell->setRow($this);
+		
 		$this->cells->unshift($cell);
+	}
+	
+	/**
+	 * Set metadata property
+	 * 
+	 * @param string $name
+	 * @param mixed  $value
+	 */
+	public function setMetadataProperty($name, $value)
+	{
+		$this->metadata[$name] = $value;
+	}
+	
+	/**
+	 * Get metadata property
+	 * 
+	 * @param  string $name
+	 * @return mixed
+	 */
+	public function getMetadataProperty($name)
+	{
+		if (isset($this->metadata[$name])) {
+			return $this->metadata[$name];
+		}
+		
+		throw new \LogicException(sprintf('Metadata property "%s" not found', $name));
 	}
 
 	/**

@@ -108,6 +108,13 @@ class Field
 	 * @var int
 	 */
 	private $priority = 0;
+	
+	/**
+	 * On cell click url
+	 *
+	 * @var string 
+	 */
+	private $cellLink;
 
 	/**
 	 * Constructor
@@ -127,6 +134,26 @@ class Field
 	public function getName()
 	{
 		return $this->name;
+	}
+	
+	/**
+	 * Set cell link
+	 * 
+	 * @param string $link
+	 */
+	public function setCellLink($link)
+	{
+		$this->cellLink = $link;
+	}
+	
+	/**
+	 * Get cell link
+	 * 
+	 * @return string | null
+	 */
+	public function getCellLink()
+	{
+		return $this->cellLink;
 	}
 
 	/**
